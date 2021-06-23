@@ -5,7 +5,6 @@ Simple application for discovering new music by using Spotify API to retrive dat
 Prerequisites:
 - Spotify account (https://www.spotify.com/)
 - Client ID and Client secret for authorization purposes (https://developer.spotify.com/)
-- artists.csv file (https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks)
 - requests (https://pypi.org/project/requests/)
 - opencv-python (https://pypi.org/project/opencv-python/)
 - Pillow (https://pypi.org/project/Pillow/)
