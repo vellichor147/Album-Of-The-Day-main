@@ -10,4 +10,4 @@ Prerequisites:
 - Pillow (https://pypi.org/project/Pillow/)
 - pandas (https://pypi.org/project/pandas/)  
 
-NOTE: Don't forget to enter your cliend ID and client secret provided by Spotify, otherwise authorization will not be possible!
+NOTE: Don't forget to enter your client ID and client secret (provided by Spotify) in Authorization.py file, otherwise authorization will not be possible and application won't work!
