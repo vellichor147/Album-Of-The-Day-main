@@ -12,6 +12,6 @@ Prerequisites:
 
 Install libraries: pip install requests opencv-python Pillow pandas
 
-![image](https://user-images.githubusercontent.com/71836410/123064618-b8cceb00-d40e-11eb-8e3a-d94f58ff48a4.png)
+![image](https://user-images.githubusercontent.com/71836410/123067992-c637a480-d411-11eb-976a-8ad87aaa3c48.png)
 
 NOTE: Don't forget to enter your client ID and client secret (provided by Spotify) in Authorization.py file, otherwise authorization will not be possible and application won't work!
