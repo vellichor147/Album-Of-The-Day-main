@@ -92,7 +92,7 @@ def VeryLowPopularity():    # 10%
 # root window
 root = Tk()
 root.title("Album of the day")
-root.iconbitmap('cd.png')
+#root.iconbitmap('cd.png')
 root.resizable(0, 0)               # fixed window size
 root.geometry("1000x620")           # window size
 root.configure(background="#191414")
@@ -284,11 +284,11 @@ class GUI:
         # Album cover label
         urllib.request.urlretrieve(self.album_cover, "cover.png")            # Create album cover from album_cover link
         resizeFunction("cover.png", 350, 350, "resized_cover.png")        
-        #self.cover = ImageTk.PhotoImage(Image.open("resized_cover.png"))     # Store resized album cover to 'cover' variable
-        self.cover2 = cv2.imread("resized_cover")
+        self.cover = ImageTk.PhotoImage(Image.open("resized_cover.png"))     # Store resized album cover to 'cover' variable
+        #self.cover2 = cv2.imread("resized_cover")
         
         #self.cover_label2 = Label(image=self.cover).place(x=self.cover_x, y=self.cover_y)       # Create label for album cover and place is on 80,50
-        self.ButtonImage = Button(root, image = self.cover2, command=self.openAlbumLink)
+        self.ButtonImage = Button(root, image = self.cover, command=self.openAlbumLink)
         self.ButtonImage.place(x=self.cover_x, y=self.cover_y)
         self.ButtonImage.bind("<Enter>", self.hover) 
         self.ButtonImage.bind("<Leave>", self.hover_leave) 
