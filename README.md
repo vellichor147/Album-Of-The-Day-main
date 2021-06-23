@@ -1,13 +1,13 @@
 # Album-Of-The-Day
 
-Simple application for discovering new music by using Spotify API to retrive data and randomly generate new album/artist.
+Simple application for discovering new music by using Spotify API to retrive data and randomly generate new album/artist. Application generates new album by randomly picking one artist from artists.csv file where artists are divided in four groups: high popularity, medium popularity, low popularity and very low popularity. Artist's popularity varies in range from 0 to 100 where 100 is the highest popularity score.  
+
 Prerequisites:
-https://pypi.org/project/requests/
-https://pypi.org/project/opencv-python/
-https://pypi.org/project/Pillow/
-https://pypi.org/project/pandas/
-or
-pip install requests
-pip install opencv-python
-pip install Pillow
-pip install pandas
+- Spotify account (https://www.spotify.com/)
+- Client ID and Client secret for authorization purposes (https://developer.spotify.com/)
+- requests (https://pypi.org/project/requests/)
+- opencv-python (https://pypi.org/project/opencv-python/)
+- Pillow (https://pypi.org/project/Pillow/)
+- pandas (https://pypi.org/project/pandas/)  
+
+NOTE: For using Spotify API in python file Authorization.py 
