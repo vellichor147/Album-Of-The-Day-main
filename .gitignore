@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+cover.png
+main.exe
+resized_cover_enlarge.png
+resized_cover.png
+setup.py
+/build
+/dist

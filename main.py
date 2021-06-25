@@ -48,12 +48,14 @@ pd.set_option('display.max_columns', 10)
 
 def createHistoryLogCSV():
     # Create album history csv file
-    df_album_history = pd.DataFrame({'artist_id': [], 'name': [], 'popularity': [], 'album_ids': []})
+    df_album_history = pd.DataFrame({'artist_id': [], 'artist': [], 'popularity': [],'album_name': [], 'album_id': []})
     df_album_history.to_csv('albums_history.csv', index=False)
     df_album_history['artist_id'] = df_album_history.artist_id.astype(str)
-    df_album_history['name'] = df_album_history.artist_id.astype(str)
+    df_album_history['artist'] = df_album_history.artist_id.astype(str)
     df_album_history['popularity'] = df_album_history.artist_id.astype(int)
-    df_album_history['album_ids'] = df_album_history.artist_id.astype(str)
+    df_album_history['album_name'] = df_album_history.artist_id.astype(str)
+    df_album_history['album_id'] = df_album_history.artist_id.astype(str)
+
     # print(df_album_history)
 
 
@@ -92,17 +94,16 @@ def VeryLowPopularity():    # 10%
 # root window
 root = Tk()
 root.title("Album of the day")
-#root.iconbitmap('cd.png')
-root.resizable(0, 0)               # fixed window size
+root.iconbitmap('vinyl.ico')
+root.resizable(0, 0)                # fixed window size
 root.geometry("1000x620")           # window size
 root.configure(background="#191414")
 
 token = getAccessToken(client_ID, client_Secret)            # Get user token
 df_artists = pd.read_csv('artists.csv')                     # Load artists.csv
-createHistoryLogCSV()                                       # Create albums_history.csv
+#createHistoryLogCSV()                                       # Create albums_history.csv
 df_log = pd.read_csv('albums_history.csv')                  # Load albums_history.csv as DataFrame object 'df_log'
                                                             # ({'artist_id':[],'name':[],'popularity':[],'album_ids':[]})
-
 
 
 class GUI:
@@ -356,45 +357,70 @@ class GUI:
     def update_artist_data(self):
         self.artist_info = getArtistInfo(token=token, artist_ID=self.artist_id)  # Returns artist info [name,link,followers,genres,popularity]
         self.album_info = getAlbumsInfo(token=token, artist_ID=self.artist_id)   # Returns albums info [album_id,album_cover,album_name,album_date,album_link]
-        self.artist_name = self.artist_info[0]
-        self.artist_url = self.artist_info[1]
-        self.artist_followers = self.artist_info[2]
-        self.artist_genre_list = self.artist_info[3][0:3]
-        self.artist_popularity = self.artist_info[4]
+        
+        # Check if album appeard by searching albums_history.csv
+        found = df_log[df_log['album_id'].str.contains(self.album_info[0])]
+        a = found.count()
+        if a['album_id'] >= 1:
+            print('duplicate!')
+            self.click()
+        else:     
+            self.artist_name = self.artist_info[0]
+            self.artist_url = self.artist_info[1]
+            self.artist_followers = self.artist_info[2]
+            self.artist_genre_list = self.artist_info[3][0:3]
+            self.artist_popularity = self.artist_info[4]
 
-        self.album_id = self.album_info[0]
-        self.album_cover = self.album_info[1]
-        self.album_name = self.album_info[2]
-        self.album_date = '(' + self.album_info[3][0:4] + ')'
-        self.album_link = self.album_info[4]
+            self.album_id = self.album_info[0]
+            self.album_cover = self.album_info[1]
+            self.album_name = self.album_info[2]
+            self.album_date = '(' + self.album_info[3][0:4] + ')'
+            self.album_link = self.album_info[4]
+
+            #region Enter log in albums_history.csv
+            rows = len(df_log.index)
+            if rows == 0:
+                df_log.at[0, 'artist_id'] = self.artist_id
+                df_log.at[0, 'artist'] = self.artist_name
+                df_log.at[0, 'popularity'] = self.artist_popularity  
+                df_log.at[0,'album_name'] = self.album_name
+                df_log.at[0,'album_id'] = self.album_id
+                df_log.to_csv('albums_history.csv')
+                #print(df_log)
+            else:
+                df_log.at[rows, 'artist_id'] = self.artist_id
+                df_log.at[rows, 'artist'] = self.artist_name
+                df_log.at[rows, 'popularity'] = self.artist_popularity  
+                df_log.at[rows,'album_name'] = self.album_name
+                df_log.at[rows,'album_id'] = self.album_id
+                df_log.to_csv('albums_history.csv')
+                #print(df_log)
+            #endregion
+
 
     def click(self):
-        rn = random.randint(1, 10)
-        # rn = 5
+        #rn = random.randint(1, 10)
+        rn = 1
         if rn <= 4:
             self.artist_id = HighPopularity()
             self.update_artist_data()
             self.update_widgets()
-            print("High popularity!")
-
+            #print("High popularity!")
         elif (rn > 4) & (rn <= 7):
             self.artist_id = MediumPopularity()
             self.update_artist_data()
             self.update_widgets()
-            print("Medium popularity!")
-
+            #print("Medium popularity!")
         elif (rn > 7) & (rn <= 9):
             self.artist_id = LowPopularity()
             self.update_artist_data()
             self.update_widgets()
-            print("Low popularity!")
-
+            #print("Low popularity!")
         else:
             self.artist_id = VeryLowPopularity()
             self.update_artist_data()
             self.update_widgets()
-            print("Very low popularity!")
-
+            #print("Very low popularity!")
     def openAlbumLink(self):
         webbrowser.open(self.album_link, new=0, autoraise=True)
     #endregion 

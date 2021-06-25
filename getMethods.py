@@ -45,7 +45,7 @@ def getAlbumsInfo(token, artist_ID):
     album_date = response['items'][0]['release_date']
     album_link = response['items'][0]['external_urls']['spotify']
     info = [album_id,album_cover,album_name,album_date,album_link]
-    print("Album info : {}".format(info))
+    #print("Album info : {}".format(info))
     return info
 
 
