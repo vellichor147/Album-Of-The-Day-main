@@ -128,7 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
+# User defined ignores
+albums_history.csv
 cover.png
 main.exe
 resized_cover_enlarge.png
