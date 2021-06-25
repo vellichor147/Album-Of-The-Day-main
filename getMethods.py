@@ -3,17 +3,6 @@ import json
 import pprint
 import pandas as pd
 
-""" def getArtistName(token, artist_ID):
-    artistEndpoint = f'https://api.spotify.com/v1/artists/{artist_ID}'
-    artist_headers = {
-        "Authorization": f"Bearer " + token
-    }
-    r = requests.get(artistEndpoint, headers=artist_headers)
-    response = r.json()
-    #print(json.dumps(response, indent=2))
-    artist_name = response['name']
-    return artist_name """
-
 def getArtistInfo(token, artist_ID):
     artistEndpoint = f'https://api.spotify.com/v1/artists/{artist_ID}'
     artist_headers = {
@@ -48,10 +37,6 @@ def getAlbumsInfo(token, artist_ID):
     #print("Album info : {}".format(info))
     return info
 
-
-
-
-
 """ def getArtistsAlbums(token, artist_ID):
     artistEndpoint = f'https://api.spotify.com/v1/artists/{artist_ID}/albums'
     artist_headers = {
@@ -73,21 +58,5 @@ def getAlbumsInfo(token, artist_ID):
     info = [album_id,album_cover,album_name,album_date]
     return info """
 
-""" def getAlbum(token, album_ID):
-    albumEndpoint = f'https://api.spotify.com/v1/albums/{album_ID}'
-    album_headers = {
-        "Authorization": f"Bearer " + token
-    }
-    r = requests.get(albumEndpoint, headers=album_headers)
-    response = r.json()
-    #print(json.dumps(response, indent=2)) """
-""" 
-def getAllCategories(token):
-    categoriesEndpoint = "https://api.spotify.com/v1/browse/categories"
-    categories_headers = {
-        "Authorization": f"Bearer " + token
-    }
-    r = requests.get(categoriesEndpoint, headers=categories_headers)
-    response = r.json()
-    #print(json.dumps(response, indent=2)) """
+
 
