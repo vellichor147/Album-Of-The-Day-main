@@ -17,35 +17,6 @@ pd.options.display.max_columns = None
 pd.set_option('display.max_rows', 10)
 pd.set_option('display.max_columns', 10)
 
-# def newInput(artist_ID, artist_name, artist_popularity):
-#     # Create input DataFrame
-#     df_input = pd.DataFrame({'artist_id':[],'name':[],'popularity':[],'album_ids':[]})
-#     # Change columns type
-#     df_input['artist_id'] = df_input.artist_id.astype(str)
-#     df_input['name'] = df_input.artist_id.astype(str)
-#     df_input['popularity'] = df_input.artist_id.astype(int)
-#     df_input['album_ids'] = df_input.artist_id.astype(str)
-#     # Input new artist data
-#     df_input.at[0, 'artist_id'] = artist_ID
-#     df_input.at[0, 'name'] = artist_name
-#     df_input.at[0, 'popularity'] = artist_popularity
-#     # Print new input
-#     # print('input:')
-#     # print(df_input.head(5))
-#     return df_input
-#
-# def getArtistHighPop():
-#     # Create subset DataFrame of artists with popularity from 80 to 100
-#     df_artists_hP = df_artists.loc[(df_artists['popularity'] > 80) & (df_artists['popularity'] <= 100)]
-#     rows = len(df_artists_hP.index)                                   # Get number of rows (artists) - 341
-#     rn = random.randint(0,rows)                                       # Generate random row number
-#     artist_ID = df_artists_hP.iloc[rn,0]                              # Get artist ID form chosen random row
-#     artist_name = df_artists_hP.iloc[rn,1]                            # Get artist name form chosen random row
-#     artist_popularity = df_artists_hP.iloc[rn,2]                      # Get artist popularity form chosen random row
-#     nInput = newInput(artist_ID,artist_name,artist_popularity)        # Create new input - new DataFrame used to pass information to history csv
-#     return nInput
-
-
 def createHistoryLogCSV():
     # Create album history csv file
     df_album_history = pd.DataFrame({'artist_id': [], 'artist': [], 'popularity': [],'album_name': [], 'album_id': []})
@@ -55,7 +26,6 @@ def createHistoryLogCSV():
     df_album_history['popularity'] = df_album_history.artist_id.astype(int)
     df_album_history['album_name'] = df_album_history.artist_id.astype(str)
     df_album_history['album_id'] = df_album_history.artist_id.astype(str)
-
     # print(df_album_history)
 
 
